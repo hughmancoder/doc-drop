@@ -1,5 +1,4 @@
-"use client";
-
+import React from "react";
 import {
   Heading,
   Avatar,
@@ -8,12 +7,25 @@ import {
   Text,
   Stack,
   Button,
-  Link,
   Badge,
   useColorModeValue,
 } from "@chakra-ui/react";
 
-export default function ProfesionalProfile() {
+interface ProfesionalProfileProps {
+  name: string;
+  username: string;
+  avatarUrl: string;
+  bio: string;
+  tags: string[];
+}
+
+const ProfesionalProfile: React.FC<ProfesionalProfileProps> = ({
+  name,
+  username,
+  avatarUrl,
+  bio,
+  tags,
+}) => {
   return (
     <Center py={6}>
       <Box
@@ -26,9 +38,7 @@ export default function ProfesionalProfile() {
       >
         <Avatar
           size={"xl"}
-          src={
-            "https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-          }
+          src={avatarUrl}
           mb={4}
           pos={"relative"}
           _after={{
@@ -44,45 +54,31 @@ export default function ProfesionalProfile() {
           }}
         />
         <Heading fontSize={"2xl"} fontFamily={"body"}>
-          Lindsey James
+          {name}
         </Heading>
         <Text fontWeight={600} color={"gray.500"} mb={4}>
-          @lindsey_jam3s
+          @{username}
         </Text>
         <Text
           textAlign={"center"}
           color={useColorModeValue("gray.700", "gray.400")}
           px={3}
         >
-          Actress, musician, songwriter and artist. PM for work inquires or{" "}
-          <Text color={"blue.400"}>#tag</Text> me in your posts
+          {bio}
         </Text>
 
         <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
-          <Badge
-            px={2}
-            py={1}
-            bg={useColorModeValue("gray.50", "gray.800")}
-            fontWeight={"400"}
-          >
-            #art
-          </Badge>
-          <Badge
-            px={2}
-            py={1}
-            bg={useColorModeValue("gray.50", "gray.800")}
-            fontWeight={"400"}
-          >
-            #photography
-          </Badge>
-          <Badge
-            px={2}
-            py={1}
-            bg={useColorModeValue("gray.50", "gray.800")}
-            fontWeight={"400"}
-          >
-            #music
-          </Badge>
+          {tags.map((tag, index) => (
+            <Badge
+              key={index}
+              px={2}
+              py={1}
+              bg={useColorModeValue("gray.50", "gray.800")}
+              fontWeight={"400"}
+            >
+              {tag}
+            </Badge>
+          ))}
         </Stack>
 
         <Stack mt={8} direction={"row"} spacing={4}>
@@ -109,4 +105,6 @@ export default function ProfesionalProfile() {
       </Box>
     </Center>
   );
-}
+};
+
+export default ProfesionalProfile;
