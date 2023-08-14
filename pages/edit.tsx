@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 import React, { useState } from "react";
 import { Button, Flex, HStack, VStack } from "@chakra-ui/react";
 import Layout from "./layout";
@@ -33,3 +33,4 @@ const Edit = () => {
 };
 
 export default Edit;
+ */

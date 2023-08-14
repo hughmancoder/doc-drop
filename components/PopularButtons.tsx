@@ -1,6 +1,8 @@
 import { Button, HStack, Icon } from "@chakra-ui/react";
 import React from "react";
 
+import Filterbutton from "./Filterbutton";
+
 const PopularOptions = [
   "General Practitioner",
   "Radiologist",
@@ -13,15 +15,16 @@ const PopularButtons = () => {
   return (
     <HStack>
       {PopularOptions.map((specialty, index) => (
-        <Button
-          key={index}
-          textColor={"blue.600"}
-          backgroundColor={"blue.50"}
-          borderRadius="full"
-          marginBottom={2}
-        >
-          {specialty}
-        </Button>
+        <Filterbutton text={specialty} />
+        // <Button
+        //   key={index}
+        //   textColor={"blue.600"}
+        //   backgroundColor={"blue.50"}
+        //   borderRadius="full"
+        //   marginBottom={2}
+        // >
+        //   {specialty}
+        // </Button>
       ))}
     </HStack>
   );
