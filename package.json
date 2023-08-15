@@ -12,6 +12,7 @@
     "@chakra-ui/icons": "^2.1.0",
     "@chakra-ui/next-js": "^2.1.5",
     "@chakra-ui/react": "^2.8.0",
+    "@chakra-ui/select": "^2.1.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@tanstack/react-table": "^8.9.3",
@@ -33,6 +34,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-router-dom": "^6.15.0",
+    "react-select": "^5.7.4",
     "typescript": "5.1.6",
     "unsplash-js": "^7.0.18"
   },

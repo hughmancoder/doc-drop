@@ -5,8 +5,12 @@
 ### 2.1.1 Homepage
 
 - [x] Navbar pages
-- [ ] The application shall provide a homepage that allows users to search for clinics, healthcare facilities, or specific doctors practicing in a given location.
-- [ ] The search results shall be displayed in an easily navigable format with relevant details.
+- [x] The application shall provide a homepage that allows users to search for clinics, healthcare facilities, or specific doctors practicing in a given location.
+- [x] The search results shall be displayed in an easily navigable format with relevant details.
+- [ ] Implement filtering and searching
+- [ ] Add location sorting and card
+- [ ] Notification left side bar approval
+- [ ] Fix patient record formatting
 
 ### 2.2.1 Request Page
 
@@ -25,7 +29,7 @@ The name, title, and work unit of the person making the request (can be a unit, 
 ### Other
 
 - [ ] Upload record pdf, document, and embed it (cloud drop)
-- [ ] use api for profile pictures
+- [x] use api for profile pictures
 - [ ] form to request specific patient records like consultation notes, test results, last scans, medication history, etc. It includes patient identifiers and offers multiple ways to receive the requested records (email, fax, or directly through the app)]
 - [ ] Real time notification page: Upon a request, a notification appears on the requested clinic's desktop. An admin person or the patient's doctor can authorize sharing the records. If patient consent is needed, a real-time notifier can be sent to the requester.
 - [ ] Settings: Clinics can choose whether or not to use the platform, maintaining autonomy and patient privacy.

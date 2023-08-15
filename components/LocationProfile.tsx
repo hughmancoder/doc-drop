@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { IoMdMedkit } from "react-icons/io";
 import {
   Heading,
   Avatar,
@@ -9,6 +8,7 @@ import {
   Text,
   Stack,
   Button,
+  Badge,
   useColorModeValue,
   Link,
 } from "@chakra-ui/react";
@@ -22,17 +22,15 @@ interface Props {
   online: boolean;
   phone?: string;
   email?: string;
-  field?: string;
 }
 
-const ProfesionalProfile = ({
+const LocationProfile = ({
   name,
   avatarUrl,
   bio,
   location,
   online,
   email,
-  field,
 }: Props) => {
   const bg = useColorModeValue("gray.50", "gray.900");
   const textColor = useColorModeValue("gray.700", "gray.400");
@@ -78,18 +76,6 @@ const ProfesionalProfile = ({
         </Heading>
         <Text fontWeight={600} color={"gray.500"} mb={4}>
           {email}
-        </Text>
-        <Text fontWeight={600} color={"gray.500"} mb={4}>
-          <span
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              whiteSpace: "nowrap",
-            }}
-          >
-            <IoMdMedkit style={{ marginRight: "0.5rem" }} />
-            {field}
-          </span>
         </Text>
         <Link fontWeight={600} color={"gray.500"} mb={4}>
           <span
@@ -141,4 +127,4 @@ const ProfesionalProfile = ({
     </Center>
   );
 };
-export default ProfesionalProfile;
+export default LocationProfile;

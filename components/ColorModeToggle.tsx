@@ -12,7 +12,7 @@ export default function ColorModeToggle() {
      */
     <Flex justifyContent="center" alignItems="center">
       <Button
-        variant="ghost"
+        variant="link"
         aria-label="Toggle Color Mode"
         onClick={toggleColorMode}
         _focus={{ boxShadow: "none" }}
