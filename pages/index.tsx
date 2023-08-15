@@ -1,13 +1,9 @@
 import React from "react";
 import Layout from "./layout";
 import PopularButtons from "../components/PopularButtons";
-import { Center, Flex, SimpleGrid } from "@chakra-ui/react";
+import { Flex, SimpleGrid } from "@chakra-ui/react";
 import MotionWrapper from "../components/MotionWrapper";
 import ProfesionalProfile from "../components/ProfessionalProfile";
-
-// import useCardDataManagement from "../hooks/useCardDataManagement";
-// import { Filter } from "../archive/Filter";
-// import NewCard from "../archive/NewCard";
 
 const mockProfiles = [
   {

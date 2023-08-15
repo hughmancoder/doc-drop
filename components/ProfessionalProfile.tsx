@@ -11,7 +11,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-interface ProfesionalProfileProps {
+interface Props {
   name: string;
   username: string;
   avatarUrl: string;
@@ -19,19 +19,22 @@ interface ProfesionalProfileProps {
   tags: string[];
 }
 
-const ProfesionalProfile: React.FC<ProfesionalProfileProps> = ({
+const ProfesionalProfile = ({
   name,
   username,
   avatarUrl,
   bio,
   tags,
-}) => {
+}: Props) => {
+  const bg = useColorModeValue("white", "gray.900");
+  // const color = useColorModeValue("white", "gray.800");
+  // const fontStyle = useColorModeValue("gray.700", "gray.400");
   return (
     <Center py={6}>
       <Box
         maxW={"320px"}
         w={"full"}
-        bg={useColorModeValue("white", "gray.900")}
+        bg={bg}
         rounded={"lg"}
         p={6}
         textAlign={"center"}
@@ -61,7 +64,7 @@ const ProfesionalProfile: React.FC<ProfesionalProfileProps> = ({
         </Text>
         <Text
           textAlign={"center"}
-          color={useColorModeValue("gray.700", "gray.400")}
+          // color={useColorModeValue("gray.700", "gray.400")}
           px={3}
         >
           {bio}
@@ -73,7 +76,7 @@ const ProfesionalProfile: React.FC<ProfesionalProfileProps> = ({
               key={index}
               px={2}
               py={1}
-              bg={useColorModeValue("gray.50", "gray.800")}
+              // bg={useColorModeValue("gray.50", "gray.800")}
               fontWeight={"400"}
             >
               {tag}

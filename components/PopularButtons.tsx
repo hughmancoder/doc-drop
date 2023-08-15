@@ -15,16 +15,7 @@ const PopularButtons = () => {
   return (
     <HStack>
       {PopularOptions.map((specialty, index) => (
-        <Filterbutton text={specialty} />
-        // <Button
-        //   key={index}
-        //   textColor={"blue.600"}
-        //   backgroundColor={"blue.50"}
-        //   borderRadius="full"
-        //   marginBottom={2}
-        // >
-        //   {specialty}
-        // </Button>
+        <Filterbutton key={index} text={specialty} />
       ))}
     </HStack>
   );
