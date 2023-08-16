@@ -11,10 +11,9 @@ import {
   DrawerHeader,
   DrawerBody,
   DrawerFooter,
-  Button,
-  Checkbox,
   Switch,
   HStack,
+  Center,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -24,6 +23,7 @@ import {
   FiSettings,
 } from "react-icons/fi";
 import { IconType } from "react-icons";
+import AlertMenu from "./AlertMenu";
 
 interface LinkItemProps {
   name: string;
@@ -82,12 +82,16 @@ export default function NotificationBar({
             <DrawerCloseButton />
           </HStack>
         </DrawerHeader>
-        <DrawerBody>body</DrawerBody>
+        <DrawerBody>
+          <AlertMenu />
+        </DrawerBody>
         <DrawerFooter>
-          <Text>Last updated</Text>
-          <Text>
-            {newDate.toLocaleDateString()} at {newDate.toLocaleTimeString()}
-          </Text>
+          <HStack>
+            <Text>Last updated</Text>
+            <Text>
+              {newDate.toLocaleDateString()} at {newDate.toLocaleTimeString()}
+            </Text>
+          </HStack>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

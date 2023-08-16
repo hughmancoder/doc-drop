@@ -76,22 +76,11 @@ const ProfesionalProfile = ({
         <Heading fontSize={"2xl"} fontFamily={"body"}>
           {name}
         </Heading>
-        <Text fontWeight={600} color={"gray.500"} mb={4}>
+        <Text fontWeight={600} color={"gray.500"} mb={1} fontSize={"sm"}>
           {email}
         </Text>
-        <Text fontWeight={600} color={"gray.500"} mb={4}>
-          <span
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              whiteSpace: "nowrap",
-            }}
-          >
-            <IoMdMedkit style={{ marginRight: "0.5rem" }} />
-            {field}
-          </span>
-        </Text>
-        <Link fontWeight={600} color={"gray.500"} mb={4}>
+
+        <Link fontWeight={600} color={"gray.500"} fontSize={"sm"}>
           <span
             style={{
               display: "inline-flex",
@@ -104,7 +93,20 @@ const ProfesionalProfile = ({
           </span>
         </Link>
 
-        <Text textAlign={"center"} color={textColor} px={3}>
+        <Text fontWeight={600} color={"gray.500"} mb={2} fontSize={"sm"}>
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              whiteSpace: "nowrap",
+            }}
+          >
+            <IoMdMedkit style={{ marginRight: "0.5rem" }} />
+            {field}
+          </span>
+        </Text>
+
+        <Text textAlign={"center"} color={textColor} px={3} paddingTop={4}>
           {bio}
         </Text>
 

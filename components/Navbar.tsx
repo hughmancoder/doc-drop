@@ -27,7 +27,7 @@ import NotificationBar from "./NotificationBar";
 const githubURL = "https://github.com/hughmancoder";
 
 const Navbar = () => {
-  // TODO: cutom NavBar hook
+  // TODO: custom NavBar hook migrate
   const [notification, setNotifications] = useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -54,9 +54,10 @@ const Navbar = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (notification) {
+        console.log("memo called");
         memoizedShowToast();
       }
-    }, 20000);
+    }, 2000);
 
     return () => {
       clearInterval(intervalId);
@@ -73,103 +74,91 @@ const Navbar = () => {
       align="center"
       justify="space-between"
       padding="1rem"
-      w="100vw"
+      w="90vw"
     >
-      <VStack>
-        <HStack paddingX="10rem">
-          <Box>
-            <Button
-              variant="link"
-              _hover={{ color: "blue.1000" }}
-              onClick={() => handleClick("/")}
-              display="inline-block"
-              paddingRight="40rem"
-              size="md"
-            >
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <FaPaperPlane style={{ marginRight: "0.5rem" }} />
-                Doc Drop
-              </span>
-            </Button>
-          </Box>
-          <Spacer />
+      <HStack>
+        <Button
+          variant="link"
+          _hover={{ color: "blue.1000" }}
+          onClick={() => handleClick("/")}
+        >
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              whiteSpace: "nowrap",
+            }}
+          >
+            <FaPaperPlane style={{ marginRight: "0.5rem" }} />
+            Doc Drop
+          </span>
+        </Button>
+      </HStack>
 
-          <Box>
-            <Button
-              variant="link"
-              _hover={{ color: "blue.700" }}
-              onClick={() => handleClick("request")}
-            >
-              Make a Request
-            </Button>
-          </Box>
+      <HStack spacing="1.5rem">
+        <Box>
+          <Button
+            variant="link"
+            _hover={{ color: "blue.700" }}
+            onClick={() => handleClick("request")}
+          >
+            Make a Request
+          </Button>
+        </Box>
+        <Box position="relative" display="inline-block">
+          <IconButton
+            mt="8px"
+            variant="link"
+            onClick={onOpen}
+            aria-label="open notifications"
+            icon={<FiBell style={{ fontSize: "16px" }} />}
+          />
+          <Box
+            position="absolute"
+            top="-4px"
+            right="-4px"
+            width="12px"
+            height="12px"
+            borderRadius="50%"
+            backgroundColor="green.400"
+          />
+        </Box>
+        <Box mt="4px">
+          <ColorModeToggle />
+        </Box>
 
-          <Box mt="4px">
-            <ColorModeToggle />
-          </Box>
-          <Box position="relative" display="inline-block">
-            <IconButton
-              mt="8px"
-              variant="link"
-              onClick={onOpen}
-              aria-label="open notifications"
-              icon={
-                <FiBell
-                  style={{
-                    fontSize: "16px",
-                  }}
-                />
-              }
-            />
-            <Box
-              position="absolute"
-              top="-4px"
-              right="-4px"
-              width="12px"
-              height="12px"
-              borderRadius="50%"
-              backgroundColor="green.400"
-            />
-          </Box>
-          <Box>
-            <Menu>
-              <MenuButton>
-                <Avatar
-                  src="https://api.dicebear.com/6.x/initials/svg?seed=D"
-                  name="User Profile"
-                  size="md"
-                />
-              </MenuButton>
-              <MenuList>
-                <MenuGroup title="Royale Adelaide Hospital">
-                  <MenuItem>My Account</MenuItem>
-                  <MenuItem>Sign out</MenuItem>
-                </MenuGroup>
-                <MenuDivider />
-                <MenuGroup title="Help">
-                  <MenuItem onClick={() => window.open(githubURL, "_blank")}>
-                    Contact
-                  </MenuItem>
-                </MenuGroup>
-              </MenuList>
-            </Menu>
-          </Box>
-        </HStack>
+        <Box style={{ zIndex: 100 }}>
+          <Menu>
+            <MenuButton>
+              <Avatar
+                src="https://api.dicebear.com/6.x/initials/svg?seed=D"
+                name="User Profile"
+                size="md"
+              />
+            </MenuButton>
+            <MenuList style={{ zIndex: 10 }}>
+              <MenuGroup title="Royale Adelaide Hospital">
+                <MenuItem>My Account</MenuItem>
+                <MenuItem>Sign out</MenuItem>
+              </MenuGroup>
+              <MenuDivider />
+              <MenuGroup title="Help">
+                <MenuItem onClick={() => window.open(githubURL, "_blank")}>
+                  Contact
+                </MenuItem>
+              </MenuGroup>
+            </MenuList>
+          </Menu>
+        </Box>
+      </HStack>
 
-        <NotificationBar
-          btnRef={btnRef}
-          isOpen={isOpen}
-          onClose={onClose}
-          notification={notification}
-          handleNotificationChange={handleNotificationChange}
-        />
-      </VStack>
+      <NotificationBar
+        btnRef={btnRef}
+        isOpen={isOpen}
+        onClose={onClose}
+        notification={notification}
+        handleNotificationChange={handleNotificationChange}
+      />
     </Flex>
   );
 };
