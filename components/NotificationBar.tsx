@@ -2,25 +2,19 @@
 
 import React, { ReactNode } from "react";
 import {
-  IconButton,
   Box,
-  CloseButton,
-  Flex,
-  Icon,
-  useColorModeValue,
   Text,
   Drawer,
   DrawerContent,
-  useDisclosure,
-  BoxProps,
-  FlexProps,
   DrawerOverlay,
   DrawerCloseButton,
   DrawerHeader,
   DrawerBody,
-  Input,
   DrawerFooter,
   Button,
+  Checkbox,
+  Switch,
+  HStack,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -47,10 +41,21 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   btnRef: any;
+  handleNotificationChange: (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
+  notification: boolean;
 }
-export default function SimpleSidebar({ isOpen, onClose, btnRef }: Props) {
+export default function NotificationBar({
+  isOpen,
+  onClose,
+  btnRef,
+  notification,
+  handleNotificationChange,
+}: Props) {
   const newDate = new Date();
   newDate.setMinutes(newDate.getMinutes() - 10);
+
   return (
     <Drawer
       size="md"
@@ -61,11 +66,23 @@ export default function SimpleSidebar({ isOpen, onClose, btnRef }: Props) {
     >
       <DrawerOverlay />
       <DrawerContent>
-        <DrawerCloseButton />
-        <DrawerHeader>Pending requests</DrawerHeader>
-
+        <DrawerHeader paddingY={2}>
+          <HStack justifyContent="space-between">
+            <Text>Message requests</Text>
+            <Box display="flex" alignItems="center" paddingRight={6}>
+              <Text ml={2} fontSize={"md"} color={"gray.600"} paddingRight={4}>
+                Notifications
+              </Text>
+              <Switch
+                isChecked={notification}
+                onChange={handleNotificationChange}
+                colorScheme="blue" // Set the desired color scheme
+              />
+            </Box>
+            <DrawerCloseButton />
+          </HStack>
+        </DrawerHeader>
         <DrawerBody>body</DrawerBody>
-
         <DrawerFooter>
           <Text>Last updated</Text>
           <Text>

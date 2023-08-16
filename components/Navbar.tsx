@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Flex,
   Box,
@@ -27,23 +27,18 @@ import NotificationBar from "./NotificationBar";
 const githubURL = "https://github.com/hughmancoder";
 
 const Navbar = () => {
+  // TODO: cutom NavBar hook
+  const [notification, setNotifications] = useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-  const [notifications, setNotifications] = React.useState(false);
+  const toast = useToast();
+  type PositionType = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 
-  useEffect(() => {
-    const position: PositionType = "top-right"; // You can change this as needed
-    const intervalId = setInterval(() => {
-      if (notifications) {
-        showToast(position);
-      }
-    }, 20000); // 30000 milliseconds (30 seconds)
-
-    // Return a cleanup function to clear the interval when the component unmounts
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+  const handleNotificationChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNotifications(event.target.checked);
+  };
 
   const showToast: (position: PositionType) => void = (position) => {
     toast({
@@ -52,17 +47,25 @@ const Navbar = () => {
       isClosable: true,
     });
   };
+  const memoizedShowToast = useCallback(() => {
+    showToast("top-left"); // You can also use the 'position' variable here
+  }, [showToast]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (notification) {
+        memoizedShowToast();
+      }
+    }, 20000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [notification, memoizedShowToast]);
 
   const handleClick = (requestURL: string) => {
     window.location.href = requestURL;
   };
-
-  const handleNotificationChange = (event) => {
-    setNotifications(event.target.checked);
-  };
-
-  const toast = useToast();
-  type PositionType = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 
   return (
     <Flex
@@ -147,15 +150,6 @@ const Navbar = () => {
                 <MenuGroup title="Royale Adelaide Hospital">
                   <MenuItem>My Account</MenuItem>
                   <MenuItem>Sign out</MenuItem>
-                  <MenuItem>
-                    <Box display="flex" alignItems="center">
-                      <Checkbox
-                        isChecked={notifications}
-                        onChange={handleNotificationChange}
-                      />
-                      <Box ml={2}>Enabled Notifications</Box>
-                    </Box>
-                  </MenuItem>
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup title="Help">
@@ -168,7 +162,13 @@ const Navbar = () => {
           </Box>
         </HStack>
 
-        <NotificationBar btnRef={btnRef} isOpen={isOpen} onClose={onClose} />
+        <NotificationBar
+          btnRef={btnRef}
+          isOpen={isOpen}
+          onClose={onClose}
+          notification={notification}
+          handleNotificationChange={handleNotificationChange}
+        />
       </VStack>
     </Flex>
   );

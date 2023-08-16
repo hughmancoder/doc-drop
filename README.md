@@ -11,6 +11,7 @@
 - [ ] Add location sorting and card
 - [ ] Notification left side bar approval
 - [ ] Fix patient record formatting
+- [ ] Add Ocupational Therapist, Add Physiopherapist
 
 ### 2.2.1 Request Page
 
