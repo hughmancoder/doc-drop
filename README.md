@@ -7,11 +7,12 @@
 - [x] Navbar pages
 - [x] The application shall provide a homepage that allows users to search for clinics, healthcare facilities, or specific doctors practicing in a given location.
 - [x] The search results shall be displayed in an easily navigable format with relevant details.
-- [ ] Implement filtering and searching
-- [ ] Add location sorting and card
+- [x] Implement filtering and searching
+- [x] Add location sorting and card
 - [x] Notification left side bar approval
 - [x] Fix patient record formatting
 - [x] Add Ocupational Therapist, Add Physiopherapist
+- [ ] Add location filtering
 
 ### 2.2.1 Request Page
 

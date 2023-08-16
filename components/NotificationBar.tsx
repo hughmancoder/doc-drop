@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React from "react";
 import {
   Box,
   Text,
@@ -13,7 +13,6 @@ import {
   DrawerFooter,
   Switch,
   HStack,
-  Center,
 } from "@chakra-ui/react";
 import {
   FiHome,

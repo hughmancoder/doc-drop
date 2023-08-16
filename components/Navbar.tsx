@@ -57,7 +57,8 @@ const Navbar = () => {
         console.log("memo called");
         memoizedShowToast();
       }
-    }, 2000);
+      // 20 second callback function for notification output
+    }, 20000);
 
     return () => {
       clearInterval(intervalId);

@@ -34,7 +34,7 @@ const alertData: AlertData[] = [
 const messages: string[] = [
   "Document request from Mr Matthew Berard",
   "Document request from Jr doctor Samiksha",
-  "Document request from Jr Doctor Rozhin Teimournezhad",
+  "Document request from Mr John Smith",
   "Document request from Mr Wayne Kueh",
 ];
 
