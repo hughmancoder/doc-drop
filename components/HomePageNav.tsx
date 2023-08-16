@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { FaUserMd, FaTimes } from "react-icons/fa";
 import Select, { StylesConfig } from "react-select";
-import { Professional } from "../pages";
-import { professionalProfiles } from "../data/professionalProfiles";
+import { professionalProfiles } from "../data/professionalProfiles"; // STATIC DATA
+import { Professional } from "../Types/interfaces";
 
 export const getLocationOptions = (professionals: Professional[]) => {
   const uniqueLocations = Array.from(
@@ -26,7 +26,7 @@ export const getLocationOptions = (professionals: Professional[]) => {
 
   locationOptions.unshift({
     value: "All",
-    label: "All locations", // Change this to your desired default label
+    label: "All locations",
   });
 
   return locationOptions;
@@ -44,12 +44,10 @@ const HomePageNav = ({
   handleLocationChange,
   handleSearchTermChange,
 }: Props) => {
-  const buttonTextColor = useColorModeValue("gray.500", "gray.400");
-
   const locationOptions = getLocationOptions(professionalProfiles);
-
+  const buttonTextColor = useColorModeValue("gray.500", "gray.400");
+  const textColor = useColorModeValue("gray.900", "gray.400");
   const bg = useColorModeValue("white", "gray.900");
-  const textColor = useColorModeValue("gray.900", "gray.400"); // Set text color
 
   const customStyles: StylesConfig = {
     control: (provided: any) => ({

@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 
 interface Props {
-  id?: number;
+  id: number;
   name: string;
   avatarUrl: string;
   bio: string;
@@ -23,6 +23,8 @@ interface Props {
   phone?: string;
   email?: string;
   field?: string;
+  handleRemoveFavourites: (id: number) => void;
+  handleSetFavourites: (id: number) => void;
 }
 
 const ProfesionalProfile = ({
@@ -33,13 +35,15 @@ const ProfesionalProfile = ({
   online,
   email,
   field,
+  id,
+  handleRemoveFavourites,
+  handleSetFavourites,
 }: Props) => {
   const bg = useColorModeValue("gray.50", "gray.900");
   const textColor = useColorModeValue("gray.700", "gray.400");
-
   const [isFavourite, setIsFavourite] = useState(false);
-
   const toggleFavourite = () => {
+    !isFavourite ? handleSetFavourites(id) : handleRemoveFavourites(id);
     setIsFavourite(!isFavourite);
   };
   return (
@@ -118,16 +122,6 @@ const ProfesionalProfile = ({
         ></Stack>
 
         <Stack mt={8} direction={"row"} spacing={4}>
-          <Button
-            flex={1}
-            fontSize={"sm"}
-            rounded={"full"}
-            _focus={{
-              bg: "gray.200",
-            }}
-          >
-            Message
-          </Button>
           <Button
             flex={1}
             fontSize="sm"

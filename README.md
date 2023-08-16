@@ -12,7 +12,10 @@
 - [x] Notification left side bar approval
 - [x] Fix patient record formatting
 - [x] Add Ocupational Therapist, Add Physiopherapist
-- [ ] Add location filtering
+- [x] Add location filtering
+- [ ] Add professional filtering
+- [ ] Style patient profiles
+- [ ] message request hooks
 
 ### 2.2.1 Request Page
 
@@ -33,8 +36,7 @@ The name, title, and work unit of the person making the request (can be a unit, 
 - [ ] Upload record pdf, document, and embed it (cloud drop)
 - [x] use api for profile pictures
 - [ ] form to request specific patient records like consultation notes, test results, last scans, medication history, etc. It includes patient identifiers and offers multiple ways to receive the requested records (email, fax, or directly through the app)]
-- [ ] Real time notification page: Upon a request, a notification appears on the requested clinic's desktop. An admin person or the patient's doctor can authorize sharing the records. If patient consent is needed, a real-time notifier can be sent to the requester.
-- [ ] Settings: Clinics can choose whether or not to use the platform, maintaining autonomy and patient privacy.
+- [x] Real time notification page: Upon a request, a notification appears on the requested clinic's desktop. An admin person or the patient's doctor can authorize sharing the records. If patient consent is needed, a real-time notifier can be sent to the requester.
 
 ### User stories
 

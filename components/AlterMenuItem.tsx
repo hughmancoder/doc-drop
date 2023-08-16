@@ -1,19 +1,5 @@
 import React, { useState } from "react";
-import {
-  MenuButton,
-  MenuList,
-  MenuItem,
-  AlertDialog,
-  AlertDialogOverlay,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogBody,
-  AlertDialogFooter,
-  Input,
-  VStack,
-  Button,
-} from "@chakra-ui/react";
-import { FaPaperPlane, FaTrash } from "react-icons/fa";
+import { MenuItem } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 interface AlertMenuItemProps {

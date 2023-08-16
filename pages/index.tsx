@@ -1,28 +1,11 @@
-import React, { useState } from "react";
 import Layout from "./layout";
 import PopularButtons from "../components/PopularButtons";
 import { Box, Flex, SimpleGrid } from "@chakra-ui/react";
 import MotionWrapper from "../components/MotionWrapper";
 import ProfesionalProfile from "../components/ProfessionalProfile";
 import HomePageNav from "../components/HomePageNav";
+import { useProfileFiltering } from "../hooks/useHomePage";
 import { professionalProfiles } from "../data/professionalProfiles";
-
-export interface Location {
-  name: string;
-  address: string;
-  open: false;
-}
-export interface Professional {
-  id: number;
-  name: string;
-  avatarUrl: string;
-  bio: string;
-  location: string;
-  online: boolean;
-  phone: string;
-  email: string;
-  field: string;
-}
 
 const labels = [
   "General Practitioner",
@@ -32,51 +15,20 @@ const labels = [
   "Orthopedic Surgeon",
   "Occupational Therapist",
   "Physiopherapist",
+  "Favourites",
 ];
 
 export default function HomePage() {
-  // TODO: custom hook
-  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [filterLabels, setFilterLabels] = useState<string[]>([]);
-  const [filteredProfiles, setFilteredProfiles] =
-    useState<Professional[]>(professionalProfiles);
-
-  const onAddLabel = (label: string) => {
-    setFilterLabels((prevLabels) => [...prevLabels, label]);
-  };
-
-  const onRemoveLabel = (label: string) => {
-    setFilterLabels((prevLabels) => prevLabels.filter((l) => l !== label));
-  };
-
-  // Function to update selected location
-  const handleLocationChange = (location: string) => {
-    if (location === "All") {
-      setFilteredProfiles(professionalProfiles);
-      return;
-    }
-    updateFilteredProfiles(location, searchTerm);
-  };
-
-  // Function to update search term
-  const handleSearchTermChange = (term: string) => {
-    console.log("search", term);
-    setSearchTerm(term);
-    updateFilteredProfiles(selectedLocation, term);
-  };
-
-  // Function to update filtered profiles based on location and search term
-  const updateFilteredProfiles = (location: string | null, term: string) => {
-    const newFilteredProfiles = professionalProfiles.filter((profile) => {
-      const matchesLocation = location ? profile.location === location : true;
-      const matchesSearchTerm = profile.name
-        .toLowerCase()
-        .includes(term.toLowerCase());
-      return matchesLocation && matchesSearchTerm;
-    });
-    setFilteredProfiles(newFilteredProfiles);
-  };
+  const {
+    filterLabels,
+    filteredProfiles,
+    onAddLabel,
+    onRemoveLabel,
+    handleSetFavourites,
+    handleRemoveFavourites,
+    handleLocationChange,
+    handleSearchTermChange,
+  } = useProfileFiltering(professionalProfiles);
 
   return (
     <Layout>
@@ -108,6 +60,8 @@ export default function HomePage() {
                 field={data.field}
                 phone={data.phone}
                 email={data.email}
+                handleRemoveFavourites={handleRemoveFavourites}
+                handleSetFavourites={handleSetFavourites}
               />
             </MotionWrapper>
           ))}

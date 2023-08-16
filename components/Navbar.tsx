@@ -48,16 +48,15 @@ const Navbar = () => {
     });
   };
   const memoizedShowToast = useCallback(() => {
-    showToast("top-left"); // You can also use the 'position' variable here
+    showToast("top-left");
   }, [showToast]);
 
+  // Imitates notifiations
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (notification) {
-        console.log("memo called");
         memoizedShowToast();
       }
-      // 20 second callback function for notification output
     }, 20000);
 
     return () => {
