@@ -9,9 +9,9 @@
 - [x] The search results shall be displayed in an easily navigable format with relevant details.
 - [ ] Implement filtering and searching
 - [ ] Add location sorting and card
-- [ ] Notification left side bar approval
-- [ ] Fix patient record formatting
-- [ ] Add Ocupational Therapist, Add Physiopherapist
+- [x] Notification left side bar approval
+- [x] Fix patient record formatting
+- [x] Add Ocupational Therapist, Add Physiopherapist
 
 ### 2.2.1 Request Page
 

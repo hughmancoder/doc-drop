@@ -16,12 +16,11 @@ import {
   Input,
   AlertIcon,
   Alert,
+  Stack,
 } from "@chakra-ui/react";
 import { FaPaperPlane, FaTrash } from "react-icons/fa";
-
 import { AlertMenuItem } from "./AlterMenuItem";
 
-// Define AlertData interface
 interface AlertData {
   type: string;
   text: string;
@@ -36,7 +35,7 @@ const messages: string[] = [
   "Document request from Mr Matthew Berard",
   "Document request from Jr doctor Samiksha",
   "Document request from Jr Doctor Rozhin Teimournezhad",
-  "Document request from Jr Mr Wayne Kueh",
+  "Document request from Mr Wayne Kueh",
 ];
 
 const AlertMenu: React.FC = () => {
@@ -74,41 +73,45 @@ const AlertMenu: React.FC = () => {
 
   return (
     <Menu>
-      {messages?.map((message, i) => (
-        <Alert
-          status="error"
-          key={i}
-          position="relative"
-          style={{ overflow: "visible" }}
-        >
-          <AlertIcon />
-          <MenuButton
+      <Stack spacing={3}>
+        {messages?.map((message, i) => (
+          <Alert
+            status="success"
+            variant="subtle"
+            key={i}
             position="relative"
-            zIndex="auto"
-            onClick={() => handleMenuButtonClick(i)}
+            style={{ overflow: "visible" }}
+            padding={2}
           >
-            {message}
-          </MenuButton>
-          {openMenuIndex === i && (
-            <MenuList
-              style={{
-                position: "absolute",
-                top: "100%",
-                left: 0,
-                zIndex: 1000,
-              }}
+            <AlertIcon />
+            <MenuButton
+              position="relative"
+              zIndex="auto"
+              onClick={() => handleMenuButtonClick(i)}
             >
-              {alertData.map((alert, index) => (
-                <AlertMenuItem
-                  key={index}
-                  alert={alert}
-                  onClick={() => handleMenuItemClick(alert)}
-                />
-              ))}
-            </MenuList>
-          )}
-        </Alert>
-      ))}
+              {message}
+            </MenuButton>
+            {openMenuIndex === i && (
+              <MenuList
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 0,
+                  zIndex: 1000,
+                }}
+              >
+                {alertData.map((alert, index) => (
+                  <AlertMenuItem
+                    key={index}
+                    alert={alert}
+                    onClick={() => handleMenuItemClick(alert)}
+                  />
+                ))}
+              </MenuList>
+            )}
+          </Alert>
+        ))}
+      </Stack>
 
       <AlertDialog
         motionPreset="slideInBottom"

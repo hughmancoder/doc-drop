@@ -11,17 +11,42 @@ import {
 } from "@chakra-ui/react";
 import { FaUserMd, FaTimes } from "react-icons/fa";
 import Select, { StylesConfig } from "react-select";
+import { Professional } from "../pages";
+import { professionalProfiles } from "../data/professionalProfiles";
+
+export const getLocationOptions = (professionals: Professional[]) => {
+  const uniqueLocations = Array.from(
+    new Set(professionals.map((professional) => professional.location))
+  );
+
+  const locationOptions = uniqueLocations.map((location, index) => ({
+    value: location,
+    label: location,
+  }));
+
+  locationOptions.unshift({
+    value: "All",
+    label: "All locations", // Change this to your desired default label
+  });
+
+  return locationOptions;
+};
+
 interface Props {
   labels: string[];
   onRemoveLabel: (label: string) => void;
+  handleLocationChange: (location: string) => void;
+  handleSearchTermChange: (term: string) => void;
 }
-const HomePageNav = ({ labels, onRemoveLabel }: Props) => {
+const HomePageNav = ({
+  labels,
+  onRemoveLabel,
+  handleLocationChange,
+  handleSearchTermChange,
+}: Props) => {
   const buttonTextColor = useColorModeValue("gray.500", "gray.400");
 
-  const options = [
-    { value: "option1", label: "Royale Adelaide Hospital" },
-    { value: "option2", label: "Hazelwood clinic" },
-  ];
+  const locationOptions = getLocationOptions(professionalProfiles);
 
   const bg = useColorModeValue("white", "gray.900");
   const textColor = useColorModeValue("gray.900", "gray.400"); // Set text color
@@ -46,15 +71,22 @@ const HomePageNav = ({ labels, onRemoveLabel }: Props) => {
           <InputLeftElement pointerEvents="none">
             <FaUserMd color="gray.300" />
           </InputLeftElement>
-          <Input type="tel" placeholder="Specialty or provider name" />
+          <Input
+            type="tel"
+            onChange={(e) => handleSearchTermChange(e.target.value)}
+            placeholder="Specialty or provider name"
+          />
         </InputGroup>
         {/* TODO: migrate into component */}
         <InputGroup zIndex={10}>
           <Select
-            options={options}
+            options={locationOptions}
             placeholder="Search for a Location"
             isSearchable
             styles={customStyles}
+            onChange={(e) =>
+              handleLocationChange((e as HTMLInputElement)?.value ?? "")
+            }
           />
         </InputGroup>
       </HStack>

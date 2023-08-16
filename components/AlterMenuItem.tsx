@@ -15,10 +15,9 @@ import {
 } from "@chakra-ui/react";
 import { FaPaperPlane, FaTrash } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { AlertData } from "./AlertMenu";
 
 interface AlertMenuItemProps {
-  alert: AlertData;
+  alert: any;
   onClick: () => void;
 }
 

@@ -30,12 +30,17 @@ const labels = [
   "Cardiologist",
   "Dermatologist",
   "Orthopedic Surgeon",
-  "Pediatrician",
-  "Psychologist",
+  "Occupational Therapist",
+  "Physiopherapist",
 ];
 
-const useLabelFilter = (initialLabels: string[]) => {
-  const [filterLabels, setFilterLabels] = useState<string[]>(initialLabels);
+export default function HomePage() {
+  // TODO: custom hook
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filterLabels, setFilterLabels] = useState<string[]>([]);
+  const [filteredProfiles, setFilteredProfiles] =
+    useState<Professional[]>(professionalProfiles);
 
   const onAddLabel = (label: string) => {
     setFilterLabels((prevLabels) => [...prevLabels, label]);
@@ -45,20 +50,43 @@ const useLabelFilter = (initialLabels: string[]) => {
     setFilterLabels((prevLabels) => prevLabels.filter((l) => l !== label));
   };
 
-  return {
-    filterLabels,
-    onAddLabel,
-    onRemoveLabel,
+  // Function to update selected location
+  const handleLocationChange = (location: string) => {
+    if (location === "All") {
+      setFilteredProfiles(professionalProfiles);
+      return;
+    }
+    updateFilteredProfiles(location, searchTerm);
   };
-};
 
-export default function HomePage() {
-  const { filterLabels, onAddLabel, onRemoveLabel } = useLabelFilter([]);
+  // Function to update search term
+  const handleSearchTermChange = (term: string) => {
+    console.log("search", term);
+    setSearchTerm(term);
+    updateFilteredProfiles(selectedLocation, term);
+  };
+
+  // Function to update filtered profiles based on location and search term
+  const updateFilteredProfiles = (location: string | null, term: string) => {
+    const newFilteredProfiles = professionalProfiles.filter((profile) => {
+      const matchesLocation = location ? profile.location === location : true;
+      const matchesSearchTerm = profile.name
+        .toLowerCase()
+        .includes(term.toLowerCase());
+      return matchesLocation && matchesSearchTerm;
+    });
+    setFilteredProfiles(newFilteredProfiles);
+  };
 
   return (
     <Layout>
       <Box boxShadow="md" w="100vw">
-        <HomePageNav labels={filterLabels} onRemoveLabel={onRemoveLabel} />
+        <HomePageNav
+          labels={filterLabels}
+          onRemoveLabel={onRemoveLabel}
+          handleLocationChange={handleLocationChange}
+          handleSearchTermChange={handleSearchTermChange}
+        />
       </Box>
       <PopularButtons labels={labels} onAddLabel={onAddLabel} />
       <Flex
@@ -68,7 +96,7 @@ export default function HomePage() {
         alignItems="center"
       >
         <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={4}>
-          {professionalProfiles.map((data, index) => (
+          {filteredProfiles.map((data, index) => (
             <MotionWrapper key={index} index={index}>
               <ProfesionalProfile
                 id={data.id}
