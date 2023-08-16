@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Professional } from "../types/interfaces";
+import { Professional } from "../components/types/interfaces";
 
 export const useProfileFiltering = (professionalProfiles: Professional[]) => {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);

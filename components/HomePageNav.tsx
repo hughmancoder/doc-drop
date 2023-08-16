@@ -12,7 +12,7 @@ import {
 import { FaUserMd, FaTimes } from "react-icons/fa";
 import Select from "react-select";
 import { professionalProfiles } from "../data/professionalProfiles"; // STATIC DATA
-import { Professional } from "../types/interfaces";
+import { Professional } from "./types/interfaces";
 
 export const getLocationOptions = (professionals: Professional[]) => {
   const uniqueLocations = Array.from(

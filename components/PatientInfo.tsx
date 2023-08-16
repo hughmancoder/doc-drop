@@ -8,7 +8,7 @@ import {
   VStack,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { MedicationRecord, Note, Result, Scan } from "../types/interfaces";
+import { MedicationRecord, Note, Result, Scan } from "./types/interfaces";
 
 interface Props {
   record: {
