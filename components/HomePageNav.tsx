@@ -10,9 +10,9 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FaUserMd, FaTimes } from "react-icons/fa";
-import Select, { StylesConfig } from "react-select";
+import Select from "react-select";
 import { professionalProfiles } from "../data/professionalProfiles"; // STATIC DATA
-import { Professional } from "../Types/interfaces";
+import { Professional } from "../types/interfaces";
 
 export const getLocationOptions = (professionals: Professional[]) => {
   const uniqueLocations = Array.from(
@@ -46,19 +46,29 @@ const HomePageNav = ({
 }: Props) => {
   const locationOptions = getLocationOptions(professionalProfiles);
   const buttonTextColor = useColorModeValue("gray.500", "gray.400");
-  const textColor = useColorModeValue("gray.900", "gray.400");
-  const bg = useColorModeValue("white", "gray.900");
-
-  const customStyles: StylesConfig = {
+  const textColor = useColorModeValue("gray.900", "gray.100");
+  const bg = useColorModeValue("white", "black");
+  const controlbg = useColorModeValue("white", "gray.100");
+  const boarderColour = useColorModeValue("gray.300", "gray.700");
+  const customStyles = {
     control: (provided: any) => ({
       ...provided,
-      width: "35rem",
-      backgroundColor: bg,
-      borderColor: "gray.50",
+      backgroundColor: controlbg,
+      borderColor: boarderColour, // Soft gray border color
+      zIndex: 100,
     }),
-    singleValue: (provided: any) => ({
+
+    menu: (provided: any) => ({
       ...provided,
+      backgroundColor: bg,
+      zIndex: 100,
+    }),
+
+    option: (provided: any, state: any) => ({
+      ...provided,
+      backgroundColor: bg,
       color: textColor,
+      zIndex: 100,
     }),
   };
 
@@ -82,9 +92,7 @@ const HomePageNav = ({
             placeholder="Search for a Location"
             isSearchable
             styles={customStyles}
-            onChange={(e) =>
-              handleLocationChange((e as HTMLInputElement)?.value ?? "")
-            }
+            onChange={(e) => handleLocationChange(e?.value ?? "")}
           />
         </InputGroup>
       </HStack>

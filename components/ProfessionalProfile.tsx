@@ -1,16 +1,27 @@
 import React, { useState } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdMedkit } from "react-icons/io";
+import { FaPaperPlane } from "react-icons/fa";
 import {
-  Heading,
-  Avatar,
-  Box,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+  FormControl,
+  FormLabel,
+  Input,
   Center,
   Text,
   Stack,
   Button,
   useColorModeValue,
   Link,
+  Avatar,
+  Box,
+  Heading,
 } from "@chakra-ui/react";
 
 interface Props {
@@ -46,10 +57,20 @@ const ProfesionalProfile = ({
     !isFavourite ? handleSetFavourites(id) : handleRemoveFavourites(id);
     setIsFavourite(!isFavourite);
   };
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onCloseModal = () => {
+    setIsOpen(false);
+  };
+
+  const onOpenModal = () => {
+    setIsOpen(true);
+  };
   return (
     <Center py={6}>
       <Box
         maxW={"320px"}
+        height={"35rem"}
         w={"full"}
         bg={bg}
         rounded={"lg"}
@@ -114,14 +135,45 @@ const ProfesionalProfile = ({
           {bio}
         </Text>
 
-        <Stack
-          align={"center"}
-          justify={"center"}
-          direction={"row"}
-          mt={6}
-        ></Stack>
+        <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
+          <Button flex={1} fontSize="sm" rounded="full" onClick={onOpenModal}>
+            Request a document
+          </Button>
+          <Modal isOpen={isOpen} onClose={onCloseModal} size="md">
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Request a Document</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <FormControl>
+                  <FormLabel>Patient Name</FormLabel>
+                  <Input placeholder="Enter patient name" />
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Document Type</FormLabel>
+                  <Input placeholder="Enter document type" />
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Request Notes</FormLabel>
+                  <Input placeholder="Enter request notes" />
+                </FormControl>
+              </ModalBody>
+              <ModalFooter justifyContent="center">
+                <Button
+                  onClick={onCloseModal}
+                  leftIcon={<FaPaperPlane />}
+                  colorScheme="blue"
+                  mr={3}
+                >
+                  Submit
+                </Button>
+                <Button onClick={onCloseModal}>Cancel</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        </Stack>
 
-        <Stack mt={8} direction={"row"} spacing={4}>
+        <Stack mt={4} direction={"row"} spacing={4}>
           <Button
             flex={1}
             fontSize="sm"

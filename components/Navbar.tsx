@@ -3,9 +3,7 @@ import {
   Flex,
   Box,
   Button,
-  Spacer,
   HStack,
-  VStack,
   Avatar,
   Menu,
   MenuButton,
@@ -16,7 +14,6 @@ import {
   IconButton,
   useDisclosure,
   useToast,
-  Checkbox,
 } from "@chakra-ui/react";
 
 import ColorModeToggle from "./ColorModeToggle";
@@ -100,9 +97,9 @@ const Navbar = () => {
           <Button
             variant="link"
             _hover={{ color: "blue.700" }}
-            onClick={() => handleClick("request")}
+            onClick={() => handleClick("requests")}
           >
-            Make a Request
+            View approved requests
           </Button>
         </Box>
         <Box position="relative" display="inline-block">
@@ -131,13 +128,13 @@ const Navbar = () => {
           <Menu>
             <MenuButton>
               <Avatar
-                src="https://api.dicebear.com/6.x/initials/svg?seed=D"
+                src="https://api.dicebear.com/6.x/initials/svg?seed=GP"
                 name="User Profile"
                 size="md"
               />
             </MenuButton>
             <MenuList style={{ zIndex: 10 }}>
-              <MenuGroup title="Royale Adelaide Hospital">
+              <MenuGroup title="General Practioner Clinic">
                 <MenuItem>My Account</MenuItem>
                 <MenuItem>Sign out</MenuItem>
               </MenuGroup>

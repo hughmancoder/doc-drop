@@ -1,8 +1,28 @@
 # Document Drop
 
-## TODO
+## About
 
-### 2.1.1 Homepage
+### search or filter doctors by name, field, favourites and by location.
+
+![image](public/homePage.png)
+
+### Make a document request to your desired clinician. This will send a notification on there view and if they approve your request you will have access to your desired patient records
+
+![image](public/homePage.png)
+
+### Approve or deny pending document request from other health professionals
+
+![image](public/approveRequests.png)
+
+### Search for approved patient records
+
+![image](public/searchRecords.png)
+
+### View patient records
+
+![image](public/viewRecords.png)
+
+## 2.1.1 Homepage
 
 - [x] Navbar pages
 - [x] The application shall provide a homepage that allows users to search for clinics, healthcare facilities, or specific doctors practicing in a given location.
@@ -13,9 +33,9 @@
 - [x] Fix patient record formatting
 - [x] Add Ocupational Therapist, Add Physiopherapist
 - [x] Add location filtering
-- [ ] Add professional filtering
-- [ ] Style patient profiles
-- [ ] message request hooks
+- [x] Add professional filtering
+- [x] Style patient profiles
+- [x] message request hooks
 
 ### 2.2.1 Request Page
 

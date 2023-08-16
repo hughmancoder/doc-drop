@@ -65,14 +65,6 @@ export default function NotificationBar({
         <DrawerBody>
           <AlertMenu />
         </DrawerBody>
-        <DrawerFooter>
-          <HStack>
-            <Text>Last updated</Text>
-            <Text>
-              {newDate.toLocaleDateString()} at {newDate.toLocaleTimeString()}
-            </Text>
-          </HStack>
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );

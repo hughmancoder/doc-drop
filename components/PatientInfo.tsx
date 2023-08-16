@@ -2,17 +2,23 @@ import React from "react";
 import {
   Box,
   Container,
-  VStack,
-  Text,
-  List,
-  ListItem,
-  useColorModeValue,
   Heading,
+  List,
+  Text,
+  VStack,
+  useColorModeValue,
 } from "@chakra-ui/react";
-import { Patient } from "./paitent";
+import { MedicationRecord, Note, Result, Scan } from "../types/interfaces";
 
 interface Props {
-  record: Patient;
+  record: {
+    dateOfBirth: string;
+    medicalHistory: string;
+    consultationNotes: Note[];
+    testResults: Result[];
+    scans: Scan[];
+    medicationRecords: MedicationRecord[];
+  };
 }
 
 const PatientInfo: React.FC<Props> = ({ record }) => {
@@ -31,52 +37,54 @@ const PatientInfo: React.FC<Props> = ({ record }) => {
         <Text>Medical History: {record.medicalHistory}</Text>
         <Box {...sectionDividerStyle} />
 
-        <VStack spacing={6} align="center">
-          <Heading textAlign="left">Consultation Notes</Heading>
-          {record.consultationNotes.map((note, index) => (
-            <Box key={index}>
+        {record.consultationNotes.map((note, index) => (
+          <Box key={index} width="100%">
+            <VStack spacing={6} align="center" width="100%">
+              <Heading textAlign="left">Consultation Notes</Heading>
               <Text>Date: {note.date}</Text>
               <Text>Doctor: {note.doctor}</Text>
               <Text>Notes: {note.notes}</Text>
-              <Box {...sectionDividerStyle} />
-            </Box>
-          ))}
-        </VStack>
+            </VStack>
+            <Box {...sectionDividerStyle} />
+          </Box>
+        ))}
 
-        <VStack spacing={6} align="center">
-          <Heading>Test Results</Heading>
-          {record.testResults.map((result, index) => (
-            <Box key={index}>
+        {record.testResults.map((result, index) => (
+          <Box key={index} width="100%">
+            <VStack spacing={6} align="center" width="100%">
+              <Heading>Test Results</Heading>
               <Text>Date: {result.date}</Text>
               <Text>Test Type: {result.testType}</Text>
               <Text>Results: {result.results}</Text>
-              <Box {...sectionDividerStyle} />
-            </Box>
-          ))}
-        </VStack>
+            </VStack>
+            <Box {...sectionDividerStyle} />
+          </Box>
+        ))}
 
-        <VStack spacing={6} align="center">
-          <Heading>Scans</Heading>
-          {record.scans.map((scan, index) => (
-            <Box key={index}>
+        {record.scans.map((scan, index) => (
+          <Box key={index} width="100%">
+            <VStack spacing={6} align="center" width="100%">
+              <Heading>Scans</Heading>
               <Text>Date: {scan.date}</Text>
               <Text>Scan Type: {scan.scanType}</Text>
               <Text>Results: {scan.results}</Text>
-              <Box {...sectionDividerStyle} />
-            </Box>
-          ))}
-        </VStack>
+            </VStack>
+            <Box {...sectionDividerStyle} />
+          </Box>
+        ))}
 
-        <VStack spacing={6} align="center">
+        <VStack spacing={6} align="center" width="100%">
           <Heading>Medication Records</Heading>
-          <List>
+          <List width="100%">
             {record.medicationRecords.map((record, index) => (
-              <ListItem key={index}>
-                <Text>Date: {record.date}</Text>
-                <Text>Medication: {record.medication}</Text>
-                <Text>Dosage: {record.dosage}</Text>
-                <Text>Frequency: {record.frequency}</Text>
-              </ListItem>
+              <Box key={index} width="100%">
+                <VStack spacing={6} align="center" width="100%">
+                  <Text>Date: {record.date}</Text>
+                  <Text>Medication: {record.medication}</Text>
+                  <Text>Dosage: {record.dosage}</Text>
+                  <Text>Frequency: {record.frequency}</Text>
+                </VStack>
+              </Box>
             ))}
           </List>
         </VStack>
