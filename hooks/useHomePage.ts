@@ -50,14 +50,6 @@ export const useProfileFiltering = (professionalProfiles: Professional[]) => {
       );
     }
 
-    if (searchTerm) {
-      newFilteredProfiles = newFilteredProfiles.filter(
-        (profile) =>
-          profile.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          profile.field.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
     if (filterLabels.find((label) => label === "Favourites")) {
       console.log("favourites", favourites);
       if (favourites.length > 0 && filterLabels.length > 0) {
@@ -77,6 +69,16 @@ export const useProfileFiltering = (professionalProfiles: Professional[]) => {
       );
     }
 
+    if (searchTerm === "") {
+      console.log("searchTerm", searchTerm);
+    }
+    if (searchTerm) {
+      newFilteredProfiles = newFilteredProfiles.filter(
+        (profile) =>
+          profile.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          profile.field.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
     setFilteredProfiles(newFilteredProfiles);
   };
 

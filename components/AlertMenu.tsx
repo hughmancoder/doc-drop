@@ -5,15 +5,18 @@ import { CustomAlert } from "./CustomAlert";
 
 const sampleAlerts: AlertData[] = [
   {
-    message: "Document request from Dr Sarah Johnson",
+    message:
+      "Document request from Dr Sarah Johnson for patient Martin Greenfield of id 123456",
     color: "gray",
   },
   {
-    message: "Document request from Dr James Smith",
+    message:
+      "Document request from Dr James Smith for patient Sara Hopkins of id 123457",
     color: "gray",
   },
   {
-    message: "Document request from Dr Henry Wilson",
+    message:
+      "Document request from Dr Henry Wilson for patient id Brian Wilson of 134399",
     color: "gray",
   },
 ];
