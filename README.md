@@ -8,7 +8,7 @@ Accessing patient records across various healthcare networks such as specialist 
 
 A web app that facilitates the request and sharing of specific patient data across healthcare practices.
 
-## Features Overfiew
+## Features Overview
 
 **Security:** Leverages existing firewall protection within healthcare practices to ensure confidentiality and security of patient records.
 
