@@ -6,11 +6,9 @@ Accessing patient records across various healthcare networks such as specialist 
 
 ## Solution
 
-A web app that facilitates the request and sharing of specific patient data across healthcare practices.
+A web app that facilitates the request and sharing of specific patient data across healthcare practices
 
 ## Features Overview
-
-**Security:** Leverages existing firewall protection within healthcare practices to ensure confidentiality and security of patient records.
 
 **User-Friendly Interface:** Similar to the Hotdoc homepage, the app is intuitive and requires no additional training for staff.
 
@@ -20,7 +18,7 @@ A web app that facilitates the request and sharing of specific patient data acro
 
 **Real-Time Notifications:** Upon a request, a notification appears on the requested clinic's desktop. An admin person or the patient's doctor can authorize sharing the records. If patient consent is needed, a real-time notifier can be sent to the requester.
 
-**Cloud Integration:**: integration with cloud storage for ease of accesiblity
+**Cloud Integration:** integration with cloud storage for ease of accesiblity
 
 **Optional Participation:** Clinics can choose whether or not to use the platform, maintaining autonomy and patient privacy and our software is flexible and accounts for this.  
 
